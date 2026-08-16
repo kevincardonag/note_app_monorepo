@@ -1,0 +1,33 @@
+# General
+.DS_Store
+.env
+.venv/
+env/
+venv/
+node_modules/
+dist/
+build/
+.next/
+.idea/
+.vscode/
+
+# Python / Backend
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.db
+*.sqlite3
+db.sqlite3
+
+# Frontend
+.pnp
+.pnp.js
+coverage
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.vercel
+*.tsbuildinfo
