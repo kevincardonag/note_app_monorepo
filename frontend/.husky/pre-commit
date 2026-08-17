@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Frontend Linters
+echo "Running Frontend Linters..."
+cd frontend
+npx lint-staged
+cd ..
+
+# Backend Linters
+echo "Running Backend Linters..."
+cd backend
+uv run pre-commit run
+cd ..
