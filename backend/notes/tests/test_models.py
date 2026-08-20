@@ -1,7 +1,9 @@
-import pytest
 import time
-from users.models import CustomUser
+
+import pytest
+
 from notes.models import Category, Note
+from users.models import CustomUser
 
 
 @pytest.mark.django_db

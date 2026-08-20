@@ -1,7 +1,8 @@
 import pytest
 from rest_framework.test import APIClient
-from users.models import CustomUser
+
 from notes.models import Category, Note
+from users.models import CustomUser
 
 
 @pytest.mark.django_db

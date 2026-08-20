@@ -24,3 +24,25 @@ dev = [
     "pytest-django>=4.14.0",
     "ruff>=0.16.3",
 ]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+extend-exclude = ["*/migrations/*"]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "B",
+    "UP",
+    "RUF",
+]
+ignore = [
+    "E501",   # Line length handled by ruff formatter
+    "RUF012", # Mutable class attributes (Django/DRF models, views, and migrations standard pattern)
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["core", "users", "notes"]

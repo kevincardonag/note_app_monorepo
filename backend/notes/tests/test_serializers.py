@@ -1,8 +1,9 @@
 import pytest
 from rest_framework.test import APIRequestFactory
-from users.models import CustomUser
+
 from notes.models import Category
 from notes.serializers import CategorySerializer, NoteSerializer
+from users.models import CustomUser
 
 
 @pytest.mark.django_db

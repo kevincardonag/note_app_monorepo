@@ -1,8 +1,10 @@
-import pytest
 from io import StringIO
+
+import pytest
 from django.core.management import call_command
+
+from notes.models import Category, Note
 from users.models import CustomUser
-from notes.models import Note, Category
 
 
 @pytest.mark.django_db

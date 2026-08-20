@@ -1,5 +1,7 @@
 import re
+
 from rest_framework import serializers
+
 from .models import Category, Note
 
 COLOR_HEX_REGEX = re.compile(r"^#[0-9A-Fa-f]{6}$")
