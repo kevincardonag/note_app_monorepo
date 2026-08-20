@@ -9,6 +9,7 @@ dependencies = [
     "django-cors-headers>=4.9.0",
     "django-environ>=0.14.0",
     "djangorestframework>=3.18.0",
+    "djangorestframework-simplejwt>=5.5.1",
     "drf-spectacular>=0.30.0",
     "gunicorn>=26.0.0",
     "psycopg[binary]>=3.3.4",
@@ -16,6 +17,10 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "model-bakery>=1.24.0",
     "pre-commit>=4.6.2",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "pytest-django>=4.14.0",
     "ruff>=0.16.3",
 ]

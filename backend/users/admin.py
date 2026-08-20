@@ -1,3 +1,10 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .models import CustomUser
 
-# Register your models here.
+
+@admin.register(CustomUser)
+class CustomUserAdmin(UserAdmin):
+    list_display = ("email", "username", "is_staff", "date_joined")
+    search_fields = ("email", "username")
+    ordering = ("-date_joined",)

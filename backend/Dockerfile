@@ -23,5 +23,5 @@ RUN uv sync --frozen
 # Copy project
 COPY . .
 
-# Run gunicorn (overridden by docker-compose for local dev)
-CMD ["gunicorn", "core.wsgi:application", "--bind", "0.0.0.0:8000"]
+# Overridden by docker-compose command for dev server
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
