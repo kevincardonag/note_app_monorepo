@@ -57,10 +57,13 @@ export function DashboardClient({
   const handleOpenNewNote = () => {
     startTransition(async () => {
       try {
+        // Always default to the user's primary category (categories[0])
+        const targetCategoryId = categories[0]?.id;
+
         const newNote = await createNoteAction({
           title: '',
           content: '',
-          category_id: selectedCategoryId || undefined,
+          category_id: targetCategoryId || undefined,
         });
         setActiveNote(newNote);
         setIsModalOpen(true);

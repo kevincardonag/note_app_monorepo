@@ -59,16 +59,33 @@ docker compose exec backend python manage.py createsuperuser
 
 ---
 
-###  Running Tests & Code Coverage
+### 🧪 Running Tests & Code Coverage
+
+You can run test suites and coverage reports directly through Docker without installing local dependencies:
+
+#### 1. Backend Test Suite & Coverage (Pytest)
 ```bash
-# 1. Backend Test Suite & Coverage (Pytest)
 docker compose exec backend pytest --cov=. --cov-report=term-missing
+```
 
-# 2. Frontend Test Suite & Coverage (Vitest)
-cd frontend && npm run test:coverage
+#### 2. Frontend Test Suite & Coverage (Vitest)
+```bash
+# Run inside Docker container (recommended):
+docker compose exec frontend npm run test:coverage
 
-# 3. Frontend Quality Checks (ESLint & Prettier)
-cd frontend && npm run lint && npx prettier --check .
+# Or run locally on host machine:
+cd frontend && npm install && npm run test:coverage
+```
+
+#### 3. Code Quality & Linting Checks
+```bash
+# Backend (Ruff)
+docker compose exec backend ruff check .
+docker compose exec backend ruff format --check .
+
+# Frontend (ESLint & Prettier)
+docker compose exec frontend npm run lint
+docker compose exec frontend npx prettier --check .
 ```
 
 ---
