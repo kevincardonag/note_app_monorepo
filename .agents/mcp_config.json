@@ -5,14 +5,14 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-postgres",
-        "postgresql://debug:debug@localhost:5432/backend"
+        "postgresql://postgres:postgres@localhost:5432/note_app"
       ]
     },
     "figma": {
       "command": "npx",
       "args": [
         "-y",
-        "@modelcontextprotocol/server-figma"
+        "figma-mcp"
       ]
     },
     "brave-search": {

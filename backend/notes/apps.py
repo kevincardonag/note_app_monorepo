@@ -2,4 +2,7 @@ from django.apps import AppConfig
 
 
 class NotesConfig(AppConfig):
-    name = 'notes'
+    name = "notes"
+
+    def ready(self):
+        import notes.signals  # noqa: F401
