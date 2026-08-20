@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "generate:api": "npx openapi-typescript http://localhost:8000/api/schema/ -o src/lib/api-schema.d.ts",
     "prepare": "cd .. && husky frontend/.husky"
   },
