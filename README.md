@@ -130,9 +130,9 @@ Here are the main technical decisions I made while building this application and
 
 ---
 
-## 4. AI-Driven Engineering Process (Chronological Workflow)
+## 🤖 4. AI-Driven Engineering Process (Chronological Workflow)
 
-Rather than using AI just for code autocomplete, I used **Antigravity** and **Claude** as engineering partners following a clear, step-by-step process:
+Rather than using AI just for code autocomplete, I leveraged an **agentic pair-programming workflow** following a clear, step-by-step engineering lifecycle:
 
 ```mermaid
 flowchart LR
@@ -142,22 +142,88 @@ flowchart LR
     D --> E[5. Plan-Driven Execution & Polish]
 ```
 
-1. **Phase 1 — Context & Requirements Extraction:** Extracted all product rules directly from the demo video and saved them in `.agents/rules/product_requirements.md`. This ensured the AI remembered business rules (like auto-generating the 3 default categories on signup via Django Signals).
+1. **Phase 1 — Context & Requirements Extraction:** Extracted all product rules directly from the demo video and saved them in `.agents/rules/product_requirements.md`. This ensured the AI autonomously remembered business rules (like auto-generating the 3 default categories on signup via Django Signals).
 2. **Phase 2 — Database & Architecture Design:** Drafted and approved the relational database schema and architecture diagrams with the AI before writing code.
-3. **Phase 3 — Monorepo & MCP Setup:** Dockerized the full-stack setup and configured MCP tools (including Figma MCP to inspect design tokens).
-4. **Phase 4 — CI/CD & Standards:** Configured Husky, Prettier, Ruff, and GitHub Actions to enforce quality standards.
+3. **Phase 3 — Monorepo & MCP Setup:** Dockerized the full-stack setup and configured MCP tools (including Figma MCP to inspect design tokens directly from the URL).
+4. **Phase 4 — CI/CD & Standards:** Configured Husky, Prettier, Ruff, and GitHub Actions to enforce production-level quality standards.
 5. **Phase 5 — Plan Execution & UI Polish:** Followed structured implementation plans to build the endpoints, debouncing logic, category color synchronization, and responsive design.
+
+> 💡 **Multi-Model Strategy Note:** For optimal planning, I created initial architectural and implementation plans using **Gemini 3.1 Pro**, and then had **Claude** analyze, critique, and improve them. This cross-model reasoning approach caught edge cases early and produced significantly higher-quality execution plans.
 
 ---
 
-## 5. Opportunities for Improvement & Known Limitations
+## 💡 5. Opportunities for Improvement & Known Limitations
 
 To deliver a reliable MVP within the challenge timeframe, I prioritized core functionality, architecture, and user flow. Here are the main improvements I would implement next:
 
 - **Stronger Password Validation:** Currently, registration accepts basic passwords. I would add stricter validation rules (minimum 8 characters, numbers, and special characters) on both the frontend form and backend serializers.
 - **Pagination & Infinite Scroll:** For users with hundreds of notes, adding pagination or cursor-based infinite scrolling would improve load times and database performance.
 - **Rich-Text / Markdown Editor:** Adding support for Markdown or a rich-text toolbar would give users more options to style their notes.
+- **Delete Confirmation Dialogs:** Adding a confirmation modal before deleting a note or category to prevent accidental data loss.
 - **Soft Deletes:** Adding a `deleted_at` field to let users recover accidentally deleted notes from a "Trash" folder.
 
 ---
 
+## 📊 6. System Diagrams
+
+### High-Level Architecture Diagram
+```mermaid
+graph LR
+    subgraph Frontend ["Frontend (Next.js 15+ / React 19)"]
+        NextApp["UI & State\n(React + Tailwind)"]
+        FetchClient["Typed Client\n(openapi-fetch)"]
+        NextApp <--> FetchClient
+    end
+
+    subgraph Backend ["Backend (Django / DRF)"]
+        DRF["Django REST Framework\n(ViewSets & Serializers)"]
+        DjangoModels["Django Models\n(Business Logic & ORM)"]
+        DRF <--> DjangoModels
+    end
+
+    subgraph Database ["Database (PostgreSQL 16)"]
+        DB[(PostgreSQL)]
+    end
+
+    FetchClient <-->|OpenAPI 3.0 REST API| DRF
+    DjangoModels <-->|SQL / Connection Pool| DB
+```
+
+### Entity-Relationship (ER) Diagram
+```mermaid
+erDiagram
+    custom_user ||--o{ category : "creates / owns"
+    custom_user ||--o{ note : "writes"
+    category ||--o{ note : "groups"
+
+    custom_user {
+        uuid id PK
+        varchar email UK "Main login identifier"
+        varchar username UK
+        varchar password "Django hashed password"
+        boolean is_active
+        datetime date_joined
+    }
+
+    category {
+        uuid id PK
+        uuid user_id FK "References custom_user"
+        varchar name "e.g., School, Personal"
+        varchar color_hex "e.g., #FFD700"
+        datetime created_at
+    }
+
+    note {
+        uuid id PK
+        uuid user_id FK "References custom_user"
+        uuid category_id FK "References category (nullable)"
+        varchar title
+        text content
+        datetime created_at
+        datetime updated_at "Auto-updated on save"
+    }
+```
+
+---
+
+*Thank you for reviewing my submission! I look forward to discussing the architecture, implementation choices, and AI workflow in detail.*
