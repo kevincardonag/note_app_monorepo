@@ -11,7 +11,7 @@ The entire stack is containerized with Docker Compose for a seamless one-command
 ### Prerequisites
 - [Docker](https://docs.docker.com/get-docker/) & [Docker Compose](https://docs.docker.com/compose/install/)
 
-### 📦 Step-by-Step Initial Setup
+### Step-by-Step Initial Setup
 
 Follow these steps to have the entire full-stack application running with database schema and optional seed data:
 
@@ -48,7 +48,7 @@ docker compose exec backend python manage.py createsuperuser
 
 ---
 
-### 🌐 Access Points & URLs
+###  Access Points & URLs
 | Service | URL | Description |
 | :--- | :--- | :--- |
 | **Frontend App** | [http://localhost:3000](http://localhost:3000) | Next.js interactive web client |
@@ -59,7 +59,7 @@ docker compose exec backend python manage.py createsuperuser
 
 ---
 
-### 🧪 Running Tests & Code Coverage
+###  Running Tests & Code Coverage
 ```bash
 # 1. Backend Test Suite & Coverage (Pytest)
 docker compose exec backend pytest --cov=. --cov-report=term-missing
@@ -130,7 +130,7 @@ Here are the main technical decisions I made while building this application and
 
 ---
 
-## 🤖 4. AI-Driven Engineering Process (Chronological Workflow)
+## 4. AI-Driven Engineering Process (Chronological Workflow)
 
 Rather than using AI just for code autocomplete, I leveraged an **agentic pair-programming workflow** following a clear, step-by-step engineering lifecycle:
 
@@ -148,11 +148,11 @@ flowchart LR
 4. **Phase 4 — CI/CD & Standards:** Configured Husky, Prettier, Ruff, and GitHub Actions to enforce production-level quality standards.
 5. **Phase 5 — Plan Execution & UI Polish:** Followed structured implementation plans to build the endpoints, debouncing logic, category color synchronization, and responsive design.
 
-> 💡 **Multi-Model Strategy Note:** For optimal planning, I created initial architectural and implementation plans using **Gemini 3.1 Pro**, and then had **Claude** analyze, critique, and improve them. This cross-model reasoning approach caught edge cases early and produced significantly higher-quality execution plans.
+>  **Multi-Model Strategy Note:** For optimal planning, I created initial architectural and implementation plans using **Gemini 3.1 Pro**, and then had **Claude** analyze, critique, and improve them. This cross-model reasoning approach caught edge cases early and produced significantly higher-quality execution plans.
 
 ---
 
-## 💡 5. Opportunities for Improvement & Known Limitations
+## 5. Opportunities for Improvement & Known Limitations
 
 To deliver a reliable MVP within the challenge timeframe, I prioritized core functionality, architecture, and user flow. Here are the main improvements I would implement next:
 
@@ -164,7 +164,7 @@ To deliver a reliable MVP within the challenge timeframe, I prioritized core fun
 
 ---
 
-## 📊 6. System Diagrams
+## 6. System Diagrams
 
 ### High-Level Architecture Diagram
 ```mermaid
